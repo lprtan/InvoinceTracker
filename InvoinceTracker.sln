@@ -4,6 +4,8 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoinceTracker", "InvoinceTracker\InvoinceTracker.csproj", "{013857C6-AA61-4319-A8E8-94527B11FAAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoinceModule", "InvoinceModule\InvoinceModule.csproj", "{DA2D21D0-B4CA-46C0-AB93-891300EC91CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{013857C6-AA61-4319-A8E8-94527B11FAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{013857C6-AA61-4319-A8E8-94527B11FAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{013857C6-AA61-4319-A8E8-94527B11FAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA2D21D0-B4CA-46C0-AB93-891300EC91CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA2D21D0-B4CA-46C0-AB93-891300EC91CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA2D21D0-B4CA-46C0-AB93-891300EC91CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA2D21D0-B4CA-46C0-AB93-891300EC91CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
