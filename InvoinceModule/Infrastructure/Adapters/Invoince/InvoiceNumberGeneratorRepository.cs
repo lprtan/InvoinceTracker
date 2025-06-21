@@ -7,7 +7,7 @@ using InvoinceModule.Application.Ports.Out;
 using InvoinceModule.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace InvoinceModule.Infrastructure.Adapters.Concrete
+namespace InvoinceModule.Infrastructure.Adapters.Invoince
 {
     public class InvoiceNumberGeneratorRepository : IInvoiceNumberGeneratorOutPort
     {

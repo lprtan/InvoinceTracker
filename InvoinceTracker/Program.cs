@@ -5,7 +5,7 @@ using InvoinceModule.Application.Ports.In;
 using InvoinceModule.Application.Ports.Out;
 using InvoinceModule.Application.UseCases;
 using InvoinceModule.Application.Validation;
-using InvoinceModule.Infrastructure.Adapters.Concrete;
+using InvoinceModule.Infrastructure.Adapters.Invoince;
 using InvoinceModule.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 

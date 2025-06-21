@@ -13,5 +13,7 @@ namespace InvoinceModule.Application.Ports.Out
         Task<IEnumerable<InvoiceHeader>> GetHeadersAsync();
         Task<InvoiceHeader> GetByInvoiceNumberAsync(string invoiceNumber);
         Task SaveChangesAsync();
+        Task<IEnumerable<InvoiceHeader>> GetProcessedButNotNotifiedInvoicesAsync();
+        Task UpdateAsync(InvoiceHeader invoice);
     }
 }

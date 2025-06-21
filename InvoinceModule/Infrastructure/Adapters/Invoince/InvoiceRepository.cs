@@ -8,7 +8,7 @@ using InvoinceModule.Domain.Entities;
 using InvoinceModule.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace InvoinceModule.Infrastructure.Adapters.Concrete
+namespace InvoinceModule.Infrastructure.Adapters.Invoince
 {
     public class InvoiceRepository : IInvoiceRepositoryOutPort
     {
@@ -41,6 +41,20 @@ namespace InvoinceModule.Infrastructure.Adapters.Concrete
 
         public async Task SaveChangesAsync()
         {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<InvoiceHeader>> GetProcessedButNotNotifiedInvoicesAsync()
+        {
+            return await _context.InvoiceHeaders
+                .Include(i => i.Details)
+                .Where(i => i.IsProcessed && !i.IsMailSent)
+                .ToListAsync();
+        }
+
+        public async Task UpdateAsync(InvoiceHeader invoice)
+        {
+            _context.InvoiceHeaders.Update(invoice);
             await _context.SaveChangesAsync();
         }
     }
