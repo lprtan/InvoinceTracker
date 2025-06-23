@@ -19,7 +19,7 @@ public class EmailNotificationUseCase
 
     public async Task SendPendingInvoiceNotificationsAsync()
     {
-        _logger.LogInformation("Gönderilmemiş faturalar için mail gönderme işlemi başladı.");
+        _logger.LogInformation("Starting to send emails for pending invoices.");
 
         try
         {
@@ -27,30 +27,30 @@ public class EmailNotificationUseCase
 
             if (!invoices.Any())
             {
-                _logger.LogInformation("Gönderilecek yeni fatura bulunamadı.");
+                _logger.LogInformation("No pending invoices found to send emails for.");
                 return;
             }
 
             foreach (var invoice in invoices)
             {
-                var subject = $"Fatura {invoice.InvoiceNumber} İşlem Bildirimi";
-                var body = $"{invoice.Details.Count} kalem ürün içeren {invoice.InvoiceNumber} nolu faturanız başarıyla işlenmiştir.";
+                var subject = $"Invoice {invoice.InvoiceNumber} Processing Notification";
+                var body = $"{invoice.Details.Count} items in your invoice {invoice.InvoiceNumber} have been processed successfully.";
 
-                _logger.LogInformation("'{InvoiceNumber}' faturası için mail gönderiliyor: {CustomerEmail}", invoice.InvoiceNumber, invoice.CustomerEmail);
+                _logger.LogInformation("Sending email for invoice '{InvoiceNumber}' to {CustomerEmail}.", invoice.InvoiceNumber, invoice.CustomerEmail);
 
                 await _emailSender.SendEmailAsync(invoice.CustomerEmail, subject, body);
 
                 invoice.IsMailSent = true;
                 await _invoiceRepository.UpdateAsync(invoice);
 
-                _logger.LogInformation("'{InvoiceNumber}' faturası için mail gönderildi.", invoice.InvoiceNumber);
+                _logger.LogInformation("Email sent successfully for invoice '{InvoiceNumber}'.", invoice.InvoiceNumber);
             }
 
-            _logger.LogInformation("Tüm bekleyen faturalar için mail gönderme işlemi tamamlandı.");
+            _logger.LogInformation("Finished sending emails for all pending invoices.");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Mail gönderimi sırasında hata oluştu.");
+            _logger.LogError(ex, "An error occurred while sending invoice emails.");
             throw;
         }
     }
