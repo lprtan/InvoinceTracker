@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using InvoinceModule.Application.Ports.Out;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Options;
 using MimeKit;
 
 namespace InvoinceModule.Infrastructure.Adapters.Email
 {
-    internal class SmtpEmailSender : IEmailSender
+    public class SmtpEmailSender : IEmailSenderOutPort
     {
         private readonly SmtpSettings _settings;
 
-        public SmtpEmailSender(SmtpSettings smtpSettings)
+        public SmtpEmailSender(IOptions<SmtpSettings> smtpSettings)
         {
-            this._settings = smtpSettings;
+            this._settings = smtpSettings.Value;
         }
 
         public async Task SendEmailAsync(string to, string subject, string body)

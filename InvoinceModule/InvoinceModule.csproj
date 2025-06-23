@@ -22,10 +22,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MimeKit" Version="4.12.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\Adapters\Jobs\" />
+    <PackageReference Include="NCrontab" Version="3.3.3" />
   </ItemGroup>
 
 </Project>

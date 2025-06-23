@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InvoinceModule.Application.Ports.Out
 {
-    public interface IEmailSender
+    public interface IEmailSenderOutPort
     {
         Task SendEmailAsync(string to, string subject, string body);
     }

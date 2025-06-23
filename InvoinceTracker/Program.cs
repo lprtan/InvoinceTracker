@@ -5,11 +5,24 @@ using InvoinceModule.Application.Ports.In;
 using InvoinceModule.Application.Ports.Out;
 using InvoinceModule.Application.UseCases;
 using InvoinceModule.Application.Validation;
+using InvoinceModule.Infrastructure.Adapters.Email;
 using InvoinceModule.Infrastructure.Adapters.Invoince;
+using InvoinceModule.Infrastructure.Adapters.Jobs;
 using InvoinceModule.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Serilog yapýlandýrmasý
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+builder.Logging.ClearProviders();
 
 // Add services to the container.
 
@@ -27,6 +40,18 @@ builder.Services.AddScoped<IInvoiceNumberGeneratorOutPort, InvoiceNumberGenerato
 
 // UseCase (Input Port) Kaydý
 builder.Services.AddScoped<IInvoiceHeaderInputPort, InvoiceHeaderUseCase>();
+
+// SMTP ayarlarý
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+
+
+// Email gönderim servisi
+builder.Services.AddTransient<IEmailSenderOutPort, SmtpEmailSender>();
+
+// Use Case
+builder.Services.AddTransient<EmailNotificationUseCase>();
+
+builder.Services.AddHostedService<InvoiceNotificationBackgroundService>();
 
 builder.Services.AddControllers();
 
