@@ -9,6 +9,7 @@ using InvoinceModule.Infrastructure.Adapters.Email;
 using InvoinceModule.Infrastructure.Adapters.Invoince;
 using InvoinceModule.Infrastructure.Adapters.Jobs;
 using InvoinceModule.Infrastructure.Context;
+using InvoinceTracker.Execptions;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -53,12 +54,16 @@ builder.Services.AddTransient<EmailNotificationUseCase>();
 
 builder.Services.AddHostedService<InvoiceNotificationBackgroundService>();
 
+builder.Services.AddProblemDetails();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
