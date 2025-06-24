@@ -24,11 +24,11 @@ namespace InvoinceModule.Infrastructure.Adapters.Jobs
             this._serviceProvider = serviceProvider;
             this._logger = logger;
 
-            // _schedule = CrontabSchedule.Parse("* * * * *");
+            //this._schedule = CrontabSchedule.Parse("* * * * *");
             //this._nextRun = DateTime.Now.AddSeconds(-1);
 
-            _schedule = CrontabSchedule.Parse("0 9 * * *");  // Her gün saat 09:00'da çalışacak
-            _nextRun = _schedule.GetNextOccurrence(DateTime.Now);  // Şu andan sonraki ilk 09:00 zamanı
+            this._schedule = CrontabSchedule.Parse("0 9 * * *");  // Her gün saat 09:00'da çalışacak
+            this._nextRun = _schedule.GetNextOccurrence(DateTime.Now);  // Şu andan sonraki ilk 09:00 zamanı
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

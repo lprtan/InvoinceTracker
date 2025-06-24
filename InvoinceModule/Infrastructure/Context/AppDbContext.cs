@@ -73,6 +73,50 @@ namespace InvoinceModule.Infrastructure.Context
                 }
             );
 
+            // InvoiceHeader Seed
+            modelBuilder.Entity<InvoiceHeader>().HasData(
+                new InvoiceHeader
+                {
+                    Id = 4,
+                    InvoiceNumber = "SVS20255",
+                    InvoiceDate = new DateTime(2025, 6, 23, 20, 52, 48, 173),
+                    CustomerName = "Alperen Tan",
+                    CustomerEmail = "lprntan@gmail.com",
+                    IsProcessed = true,
+                    IsMailSent = false,
+                    ReceiverTitle = "Alıcı Firma",
+                    SenderTitle = "Gönderici Firma"
+                }
+            );
+
+            // InvoiceDetail Seed
+            modelBuilder.Entity<InvoiceDetail>().HasData(
+                new InvoiceDetail
+                {
+                    Id = 5,
+                    InvoiceHeaderId = 4,
+                    ProductName = "Süt",
+                    Quantity = 10,
+                    UnitPrice = 8.00m
+                },
+                new InvoiceDetail
+                {
+                    Id = 6,
+                    InvoiceHeaderId = 4,
+                    ProductName = "Kalem",
+                    Quantity = 100,
+                    UnitPrice = 3.00m
+                },
+                new InvoiceDetail
+                {
+                    Id = 7,
+                    InvoiceHeaderId = 4,
+                    ProductName = "Kahve",
+                    Quantity = 18,
+                    UnitPrice = 15.00m
+                }
+            );
+
             base.OnModelCreating(modelBuilder);
         }
     }
