@@ -1,0 +1,24 @@
+2025-06-24 00:36:07 [INF] InvoiceNotificationBackgroundService initialized.
+2025-06-24 00:36:08 [INF] Background service started.
+2025-06-24 00:36:08 [INF] Executing invoice notification job at "2025-06-24T00:36:08.6667653+03:00"
+2025-06-24 00:36:08 [INF] Starting to process unsent invoices...
+2025-06-24 00:36:09 [INF] Executed DbCommand (55ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [i].[Id], [i].[CustomerEmail], [i].[CustomerName], [i].[InvoiceDate], [i].[InvoiceNumber], [i].[IsMailSent], [i].[IsProcessed], [i].[ReceiverTitle], [i].[SenderTitle], [i0].[Id], [i0].[InvoiceHeaderId], [i0].[ProductName], [i0].[Quantity], [i0].[UnitPrice]
+FROM [InvoiceHeaders] AS [i]
+LEFT JOIN [InvoiceDetails] AS [i0] ON [i].[Id] = [i0].[InvoiceHeaderId]
+WHERE [i].[IsProcessed] = CAST(1 AS bit) AND [i].[IsMailSent] = CAST(0 AS bit)
+ORDER BY [i].[Id]
+2025-06-24 00:36:09 [INF] Now listening on: https://localhost:7135
+2025-06-24 00:36:09 [INF] Now listening on: http://localhost:5251
+2025-06-24 00:36:09 [INF] Successfully processed unsent invoices.
+2025-06-24 00:36:09 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-24 00:36:09 [INF] Hosting environment: Development
+2025-06-24 00:36:09 [INF] Content root path: C:\Users\Alperen Tan\Source\Repos\InvoinceTracker\InvoinceTracker
+2025-06-24 00:36:11 [INF] Request starting HTTP/2 GET https://localhost:7135/swagger/index.html - null null
+2025-06-24 00:36:11 [INF] Request finished HTTP/2 GET https://localhost:7135/swagger/index.html - 200 null text/html;charset=utf-8 181.6235ms
+2025-06-24 00:36:11 [INF] Request starting HTTP/2 GET https://localhost:7135/_vs/browserLink - null null
+2025-06-24 00:36:11 [INF] Request starting HTTP/2 GET https://localhost:7135/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-24 00:36:11 [INF] Request finished HTTP/2 GET https://localhost:7135/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 15.8055ms
+2025-06-24 00:36:11 [INF] Request finished HTTP/2 GET https://localhost:7135/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.2838ms
+2025-06-24 00:36:11 [INF] Request starting HTTP/2 GET https://localhost:7135/swagger/v1/swagger.json - null null
+2025-06-24 00:36:11 [INF] Request finished HTTP/2 GET https://localhost:7135/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.9584ms
