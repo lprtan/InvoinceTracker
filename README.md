@@ -33,7 +33,8 @@ Projede Hexagonal mimari kullanlamıştır:
 - **Entity Framework Core**: Veritabanı işlemleri için.
 - **Serilog**: Log işlemleri için.
 - **MailKit-MimeKit**: Mail göndermek için.
-- **NCrontab** Zamanlanmış görevler için.
+- **NCrontab**: Zamanlanmış görevler için.
+- **Xunit**: Unit test yazmak için
 
 ## Notlar
 
